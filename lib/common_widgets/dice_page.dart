@@ -10,19 +10,19 @@ class _DicePageState extends State<DicePage> {
   int leftDiceNumber = Random().nextInt(6) + 1;
   int rightDiceNumber = Random().nextInt(6) + 1;
   int scoreMatch = 0;
+  String welcomeText = 'Hey there';
+  List<String> luckUrls = [
+    'https://media.giphy.com/media/OG766ZCawdMZy/giphy.gif',
+    'https://media.giphy.com/media/gFi7V9CRBQVW0/giphy.gif',
+    'https://media.giphy.com/media/lnlAifQdenMxW/giphy.gif',
+    'https://media.giphy.com/media/cnlkXgT2mDahi/giphy.gif',
+    'https://media.giphy.com/media/10AYkGR9M75nLW/giphy.gif',
+    'https://media.giphy.com/media/xT1R9IrdXK8WnKDXwc/giphy.gif',
+    'https://media.giphy.com/media/ddHhhUBn25cuQ/giphy.gif',
+    'https://media.giphy.com/media/fVbTigN2xJRlOEdVMh/giphy.gif',
+  ];
 
-  String getRandomLuckUrl() {
-    List<String> luckUrls = [
-      'https://media.giphy.com/media/ddHhhUBn25cuQ/giphy.gif',
-      'https://media.giphy.com/media/OG766ZCawdMZy/giphy.gif',
-      'https://media.giphy.com/media/gFi7V9CRBQVW0/giphy.gif',
-      'https://media.giphy.com/media/lnlAifQdenMxW/giphy.gif',
-      'https://media.giphy.com/media/xT1R9IrdXK8WnKDXwc/giphy.gif'
-    ];
-    return luckUrls[scoreMatch % luckUrls.length];
-  }
-
-  void _showDialog() {
+  void _showRewardPopUp() {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -30,13 +30,13 @@ class _DicePageState extends State<DicePage> {
         return AlertDialog(
           backgroundColor: Colors.amber.shade500,
           title: new Text(
-            "YOU ARE LUCKY!!!",
+            'YOU ARE LUCKY!!!',
             style: TextStyle(
               fontSize: 30.0,
             ),
           ),
           content: new Image(
-            image: NetworkImage(getRandomLuckUrl()),
+            image: NetworkImage(luckUrls[scoreMatch++ % luckUrls.length]),
           ),
           actions: <Widget>[
             // usually buttons at the bottom of the dialog
@@ -62,8 +62,7 @@ class _DicePageState extends State<DicePage> {
       leftDiceNumber = Random().nextInt(6) + 1;
       rightDiceNumber = Random().nextInt(6) + 1;
       if (leftDiceNumber == rightDiceNumber) {
-        _showDialog();
-        scoreMatch++;
+        _showRewardPopUp();
       }
     });
   }
@@ -78,7 +77,7 @@ class _DicePageState extends State<DicePage> {
             Expanded(
               child: Center(
                 child: Text(
-                  'Hey there',
+                  welcomeText,
                   style: TextStyle(
                     fontSize: 30.0,
                     fontStyle: FontStyle.italic,

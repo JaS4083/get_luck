@@ -16,4 +16,4 @@ const TextStyle kRewardWindowTextStyle = TextStyle(
 );
 
 const String kRewardTextTop = 'YOU ARE LUCKY!!!';
-const String kRewardTextBottom = 'YOU ARE LUCKY!!!';
+const String kRewardTextBottom = 'YES!!!';
